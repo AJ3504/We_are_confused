@@ -19,7 +19,7 @@ header {
   font-size: 30px;
 }
 
-.search {
+#search-form {
   text-align: center;
   margin-bottom: 30px;
 }
