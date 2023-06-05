@@ -62,10 +62,28 @@ header {
     margin-left: 12px;
     vertical-align: middle;
 }
+.recent_list .keyword_anchor {
+    background: #fff;
+    color: #333;
+    border: 1px solid #dadcdf;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+}
 .recent_list .del_btn {
     border: 0;
     background: none;
     cursor: pointer;
     color: #868d9f;
     transition: color 0.3s ease;
+}
+
+/* 테마 버튼 */
+#themeBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: 0;
+    background: 0;
+    font-size: 18px;
 }

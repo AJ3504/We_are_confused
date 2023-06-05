@@ -70,8 +70,11 @@ let sortMovies = async (event) => {
 function a(item) {
     let { poster_path, title, overview, vote_average, id } = item;
 
-    let movieCard = document.createElement('div');
+    let movieCard = document.createElement('a'); // 상세p
+
     movieCard.className = 'movie-card';
+    movieCard.target = 'movie-card';
+    movieCard.href = `./pages/details.html?id=${id}`; // 상세p
     movieCard.onclick = function () {
         alert(`ID : ${id}`);
     };
@@ -170,3 +173,28 @@ const loadRecentKeyword = () => {
 };
 
 loadRecentKeyword();
+
+// 다크테마 - 이지영
+const $themeText = document.querySelector('#themeBtn b');
+const $themeBtn = document.querySelector('#themeBtn');
+const theme = localStorage.getItem('theme');
+
+const initTheme = () => {
+    if (theme) {
+        $themeText.innerHTML = theme === 'dark' ? 'ON' : 'OFF';
+        document.documentElement.setAttribute('data-theme', theme);
+    }
+};
+
+const toggleTheme = () => {
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    $themeText.innerHTML = newTheme === 'dark' ? 'ON' : 'OFF';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+};
+
+$themeBtn.addEventListener('click', toggleTheme);
+initTheme();
