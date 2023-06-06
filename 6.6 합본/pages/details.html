@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <title>이안진의 최고 평점 영화 콜렉션</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      .write-review {
+        margin-bottom: 20px;
+      }
+      /* .review-container {
+      } */
+      .review-item {
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      /* .p {
+      } */
+      /* .span {
+        
+      } */
+    </style>
+  </head>
+
+  <body>
+    <header>서브페이지 테스트</header>
+    <h1>영화 리뷰</h1>
+
+    <div id="write-review">
+      <label for="review">리뷰 작성:</label>
+      <textarea id="review" rows="4" cols="50"></textarea>
+      <button id="submit">전송</button>
+    </div>
+
+    <!-- 여기에 리뷰 로드 -->
+    <div id="review-container"></div>
+
+    <!-- <script src="../static/js/main.js"></script> -->
+    <script>
+      // 테스트용
+
+      const urlParams = new URL(location.href).searchParams;
+      const paramId = urlParams.get("id");
+      console.log(paramId);
+
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZjFhODNmODg5NjI3YjBjNzRmYjY1ZGM2ZjBiNmU2YSIsInN1YiI6IjY0NzU2NGY2ZGQyNTg5MDEyMDA1OWQ3NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qYbO2zm8YucQo4jLrsGEtheiaYzCIhcxhyD8M9kAqhI",
+        },
+      };
+
+      fetch(
+        `https://api.themoviedb.org/3/movie/${paramId}?language=en-US`,
+        options
+      )
+        .then((response) => response.json())
+        .then((response) => console.log(response))
+        .catch((err) => console.error(err));
+    </script>
+
+    <script>
+      // 리뷰 컨테이너와 입력 필드, 전송 버튼을 선택합니다.
+      const reviewContainer = document.getElementById("review-container");
+      const reviewInput = document.getElementById("review");
+      const submitButton = document.getElementById("submit");
+
+      // 전송 버튼에 클릭 이벤트 핸들러를 추가합니다.
+      submitButton.addEventListener("click", addReview);
+
+      // 페이지 로드 시 리뷰 데이터를 로드합니다.
+      window.addEventListener("load", loadReviews);
+
+      function addReview() {
+        const reviewText = reviewInput.value.trim();
+        const movieId = paramId;
+        if (reviewText !== "") {
+          // 기존 리뷰 데이터를 가져옵니다.
+          const reviews = getReviews();
+
+          // 새로운 리뷰 객체를 생성합니다.
+          const newReview = {
+            text: reviewText,
+            date: new Date().toLocaleDateString(),
+            id: movieId,
+          };
+
+          // 리뷰를 배열에 추가합니다.
+          reviews.push(newReview);
+
+          // 리뷰 데이터를 로컬 스토리지에 저장합니다.
+          saveReviews(reviews);
+        }
+      }
+
+      // 리뷰 데이터를 로컬 스토리지에 저장하는 함수입니다.
+      function saveReviews(reviews) {
+        localStorage.setItem("reviews", JSON.stringify(reviews));
+      }
+
+      // 로컬 스토리지에서 리뷰 데이터를 가져오는 함수입니다.
+      function getReviews() {
+        const reviewsString = localStorage.getItem("reviews");
+        return reviewsString ? JSON.parse(reviewsString) : [];
+      }
+
+      function loadReviews() {
+        // 로컬 스토리지에서 리뷰 데이터를 가져옵니다.
+        const reviews = getReviews();
+
+        // 리뷰 컨테이너를 초기화합니다.
+        reviewContainer.innerHTML = "";
+
+        // 리뷰 데이터를 순회하면서 리뷰 요소를 생성하여 리뷰 컨테이너에 추가합니다.
+        for (const review of reviews) {
+          if (review.id === paramId) {
+            const reviewElement = createReviewElement(review);
+            reviewContainer.appendChild(reviewElement);
+          }
+        }
+      }
+
+      // 리뷰 요소를 생성하는 함수입니다.
+      function createReviewElement(review) {
+        const reviewElement = document.createElement("div");
+        reviewElement.classList.add("review-item");
+        reviewElement.innerHTML = `
+    <p>${review.text}</p>
+    <span>${review.date}</span>
+  `;
+        return reviewElement;
+      }
+    </script>
+  </body>
+</html>
