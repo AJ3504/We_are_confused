@@ -76,10 +76,12 @@ function saveReviews(reviews) {
 
 // window.localStorage.clear();
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
 // 로컬 스토리지에서 리뷰 데이터를 가져오는 함수입니다.
 function getReviews() {
   const reviewsString = localStorage.getItem(`${paramId}`);
-  console.log("콘솔", reviewsString);
+  console.log("콘솔1", reviewsString);
   return reviewsString ? JSON.parse(reviewsString) : [];
 }
 
@@ -115,13 +117,11 @@ function createReviewElement(review) {
   contentElement.innerHTML = `<p>${review.text}</p>`;
   dateElement.innerHTML = `<span>${review.date}</span>`;
   editButton.textContent = "수정"; //
-  deleteButton.textContent = "삭제"; //
-
   // 수정 버튼 클릭 시 수정 모드로 전환
   editButton.addEventListener("click", () => {
     enableEditMode(review);
   });
-
+  deleteButton.textContent = "삭제"; //
   // 삭제 버튼 클릭 시 댓글 삭제
   deleteButton.addEventListener("click", () => {
     deleteReview(review);
@@ -135,19 +135,60 @@ function createReviewElement(review) {
   userDate.appendChild(dateElement);
 }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+// 댓글 수정 모드로 전환
+// function enableEditMode(review) {
+//   //
+//   const contentElement = userContent.querySelector(".content-item");
+//   const editInput = document.createElement("textarea");
+//   const saveButton = document.createElement("button");
+//   saveButton.textContent = "저장";
+
+//   //비밀번호 입력후, 일치시 입력란 수정 후 로컬스토리지 저장
+//   saveButton.addEventListener("click", () => {
+//     let 비밀번호 = prompt("입력했던 비밀번호를 재입력해주세요!");
+
+//     if (비밀번호 !== review.password) {
+//       alert("비밀번호가 올바르지 않습니다.");
+//     } else if (비밀번호 === review.password) {
+//       editInput.addEventListener("input", () => {
+//         review.text = editInput.value;
+
+//         const reviews = getReviews();
+//         reviews[index].text = review.text;
+
+//         localStorage.setItem(`${paramId}`, JSON.stringify(reviews));
+//       });
+//     }
+//   });
+
+//   //디스플레이
+//   contentElement.innerHTML = "";
+//   contentElement.appendChild(editInput);
+//   contentElement.appendChild(saveButton);
+// }
+
 // 댓글 수정 모드로 전환
 function enableEditMode(review) {
   const contentElement = userContent.querySelector(".content-item");
   const editInput = document.createElement("textarea");
   const saveButton = document.createElement("button");
-
-  //여기
-  editInput.value = review.text;
   saveButton.textContent = "저장";
+
+  // textarea 값 변경 시
+  editInput.addEventListener("input", (event) => {
+    review.text = event.target.value;
+  });
 
   // 저장 버튼 클릭 시 수정 내용 저장
   saveButton.addEventListener("click", () => {
-    saveEditedReview(review, editInput.value);
+    const 비밀번호 = prompt("입력했던 비밀번호를 재입력해주세요!");
+
+    if (비밀번호 !== review.password) {
+      alert("비밀번호가 올바르지 않습니다.");
+    } else {
+      saveEditedReview(review);
+    }
   });
 
   contentElement.innerHTML = "";
@@ -156,52 +197,51 @@ function enableEditMode(review) {
 }
 
 // 수정된 댓글 저장
-function saveEditedReview(review, newText) {
-  review.text = newText;
-  updateReviews();
+function saveEditedReview(review) {
+  const reviews = getReviews();
+  const index = reviews.findIndex((r) => r.id === review.id);
+
+  if (index !== -1) {
+    reviews[index].text = review.text;
+    saveReviews(reviews);
+    display(); // 화면 업데이트
+  }
 }
 
-// //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-// // 댓글 수정 모드로 전환
-// function enableEditMode(review) {
-//   const contentElement = userContent.querySelector(".content-item");
-//   const editInput = document.createElement("textarea");
-//   const saveButton = document.createElement("button");
+function display() {
+  // 리뷰 데이터를 로컬 스토리지에서 가져옵니다.
+  const reviews = getReviews();
 
-//   editInput.value = review.text;
-//   saveButton.textContent = "저장";
+  // 리뷰 컨테이너를 초기화합니다.
+  userNickname.innerHTML = "";
+  userContent.innerHTML = "";
+  userDate.innerHTML = "";
 
-//   // textarea 값 변경 시 🤔
-//   editInput.addEventListener("input", () => {
-//     review.text = editInput.value;
-//     review.push(review.text);
-//     return review;
-//   });
+  // 가져온 리뷰 데이터를 순회하면서 리뷰 요소를 생성하여 화면에 출력합니다.
+  for (const review of reviews) {
+    if (review.id === paramId) {
+      createReviewElement(review);
+    }
+  }
+}
 
-//   function saveChangedReview(review) {
-//     localStorage.setItem(`${paramId}`, JSON.stringify(review));
-//   }
-//   saveChangedReview();
+// loadReviews 함수 내에서 display를 호출하여 초기 화면에 리뷰를 출력할 수 있습니다.
+function loadReviews() {
+  // 로컬 스토리지에서 리뷰 데이터를 가져옵니다.
+  const reviews = getReviews();
 
-// 저장 버튼 클릭 시 수정 내용 저장 🤔
-//원래
-// saveButton.addEventListener("click", () => {
-//   // saveEditedReview(review);
-//   updateReviews(review);
-// });
+  // 리뷰 컨테이너를 초기화합니다.
+  userNickname.innerHTML = "";
+  userContent.innerHTML = "";
+  userDate.innerHTML = "";
 
-//
-
-// contentElement.innerHTML = "";
-// contentElement.appendChild(editInput);
-// contentElement.appendChild(saveButton);
-// }
-
-// 수정된 댓글 저장
-// function saveEditedReview(review) {
-//   updateReviews();
-//   // 화면 업데이트 로직 추가
-// }
+  // 가져온 리뷰 데이터를 순회하면서 리뷰 요소를 생성하여 화면에 출력합니다.
+  for (const review of reviews) {
+    if (review.id === paramId) {
+      createReviewElement(review);
+    }
+  }
+}
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 // 댓글 삭제
@@ -227,7 +267,6 @@ function deleteReview(review) {
   }
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 // 리뷰 데이터 업데이트 및 화면 업데이트 🤔
 function updateReviews() {
   const reviews = getReviews();
