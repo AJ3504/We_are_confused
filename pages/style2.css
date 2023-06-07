@@ -1,0 +1,107 @@
+/* 상세정보 페이지 */
+@font-face {
+    font-family: 'Dovemayo_wild';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/Dovemayo_wild.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Dovemayo_wild';
+    /* background-color: black;
+  color: white; */
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    height: 100vh;
+    margin: 0;
+}
+.movieDetail {
+    border-style: solid;
+    border-color: #636060b2;
+    border-width: 1px;
+    padding: 20px;
+    max-width: 100%;
+    display: block;
+    font-size: 0;
+    margin: 0 -5px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+.movieDetail img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px auto;
+    display: block;
+    box-sizing: border-box;
+}
+
+p {
+    display: inline-block;
+    width: 50%;
+    max-height: 735px;
+    padding: 0 5px;
+    border-style: solid;
+    border-color: #636060b2;
+    border-width: 1px;
+    font-size: 20px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.reviewButton {
+    margin-top: 10px;
+    font-size: 25px;
+    padding: 5px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.movieDetail {
+    border-style: solid;
+    border-color: #636060b2;
+    border-width: 1px;
+    padding: 20px;
+    width: 1100px;
+    display: block;
+    font-size: 0;
+    margin: 0 -5px;
+    position: relative;
+}
+.movieDetail img {
+    width: 500px;
+    height: auto;
+    margin-right: 10px;
+    display: inline-block;
+    padding: 0 5px;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+p {
+    display: inline-block;
+    width: 50%;
+    height: 735px;
+    padding: 0 5px;
+    border-style: solid;
+    border-color: #636060b2;
+    border-width: 1px;
+    font-size: 20px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.reviewButton {
+    margin-top: 10px;
+    font-size: 25px;
+    padding: 5px;
+    position: absolute;
+    bottom: 50px;
+    right: 300px;
+}
