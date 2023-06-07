@@ -45,10 +45,17 @@ let sortMovies = async (event) => {
   cardList.innerHTML = "";
 
   //필터링
-  let searchInput = document.querySelector("#searchInput").value;
+  let searchInput = document.getElementById("searchInput").value;
+  if (searchInput.trim() === "") {
+    alert("검색하려는 영화 제목을 입력하세요");
+  }
   let filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(searchInput.toLowerCase())
   );
+  if (filteredMovies.length === 0) {
+    alert("검색하려는 영화가 없습니다");
+    return;
+  }
   console.log(filteredMovies);
 
   let movieCard;
@@ -57,9 +64,10 @@ let sortMovies = async (event) => {
     let cardList = document.querySelector(".card-list");
     cardList.append(movieCard);
   });
-
-  a(filteredMovies);
 };
+console.log(searchvalidation);
+
+a(filteredMovies);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 // 2,3 중복되는 부분 : a()함수
