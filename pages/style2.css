@@ -15,7 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     height: 100vh;
     margin: 0;
 }
@@ -69,34 +69,33 @@ p {
     border-width: 1px;
     padding: 20px;
     width: 1100px;
-    display: block; font-size: 0;
+    display: block;
+    font-size: 0;
     margin: 0 -5px;
     position: relative;
-
 }
 .movieDetail img {
-    width: 500px; 
+    width: 500px;
     height: auto;
     margin-right: 10px;
     display: inline-block;
-	padding: 0 5px;
+    padding: 0 5px;
     vertical-align: middle;
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 p {
     display: inline-block;
-	width: 50%;
-    height:735px;
-	padding: 0 5px;
+    width: 50%;
+    height: 735px;
+    padding: 0 5px;
     border-style: solid;
     border-color: #636060b2;
     border-width: 1px;
     font-size: 20px;
-    vertical-align: middle; 
-	box-sizing: border-box;
+    vertical-align: middle;
+    box-sizing: border-box;
     overflow: auto;
 }
-
 
 .reviewButton {
     margin-top: 10px;
