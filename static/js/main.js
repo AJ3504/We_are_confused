@@ -9,7 +9,7 @@ const fetchMovieData = async () => {
                 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzFhOWNiZmI5ZmQyYjM0Zjc5NDJhMDE3ZDQzNzk1NCIsInN1YiI6IjY0NzA4OTQ1MTNhMzIwMDEzMzg2MDdhZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IRZX6ubYrGSryWyuwy-pz7rwGMOmnbvU9PitigtZTcM',
         },
     };
-    
+
     const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options);
 
     const data = await response.json();
@@ -35,22 +35,18 @@ showMovies();
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 // 3.검색 -> 필터링해서 보여주기 : 함수 sortMovies()
 let sortMovies = async (event) => {
-  event.preventDefault();
-  let movies = await fetchMovieData();
+    event.preventDefault();
+    let movies = await fetchMovieData();
 
-  let cardList = document.querySelector(".card-list");
-  cardList.innerHTML = "";
+    let cardList = document.querySelector('.card-list');
+    cardList.innerHTML = '';
 
-  //필터링
+    //필터링
     let searchInput = document.querySelector('#searchInput').value;
-  
-  if (searchInput.trim() === "") {
-    swal(
-      "검색하려는 영화 제목을 입력하세요",
-      "한 글자부터 입력 가능",
-      "warning"
-    );
-  }
+
+    if (searchInput.trim() === '') {
+        swal('검색하려는 영화 제목을 입력하세요', '한 글자부터 입력 가능', 'warning');
+    }
 
     // 최근검색어 앵커 클릭 조건 추가
     let targetKeyword = event ? event.target.dataset.keyword : null;
@@ -59,26 +55,21 @@ let sortMovies = async (event) => {
     } else {
         searchInput = targetKeyword;
     }
-  
-  let filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(searchInput.toLowerCase())
-  );
-  if (filteredMovies.length === 0) {
-    swal("검색하려는 영화가 없습니다", "", "error");
-    return;
-  }
-  console.log(filteredMovies);
 
-  let movieCard;
-  filteredMovies.map((item) => {
-    movieCard = a(item);
-    let cardList = document.querySelector(".card-list");
-    cardList.append(movieCard);
-  });
+    let filteredMovies = movies.filter((movie) => movie.title.toLowerCase().includes(searchInput.toLowerCase()));
+    if (filteredMovies.length === 0) {
+        swal('검색하려는 영화가 없습니다', '', 'error');
+        return;
+    }
+    console.log(filteredMovies);
+
+    let movieCard;
+    filteredMovies.map((item) => {
+        movieCard = a(item);
+        let cardList = document.querySelector('.card-list');
+        cardList.append(movieCard);
+    });
 };
-console.log(searchvalidation);
-
-a(filteredMovies);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 // 2,3 중복되는 부분 : a()함수

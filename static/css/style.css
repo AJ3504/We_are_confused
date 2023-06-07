@@ -35,6 +35,8 @@ header {
     margin-top: 20px;
     border-style: solid;
     border-color: white;
+    color: #000;
+    text-decoration: none;
 }
 
 /* 최근 검색어 */
@@ -87,4 +89,3 @@ header {
     background: 0;
     font-size: 18px;
 }
-
