@@ -6,6 +6,7 @@
     }
     .movie-card {
         background: #272829;
+        color: #fff;
         border: 0;
     }
     hr {
@@ -31,6 +32,7 @@ html[data-theme='dark'] {
 }
 html[data-theme='dark'] .movie-card {
     background: #272829;
+    color: #fff;
     border: 0;
 }
 html[data-theme='dark'] hr {
@@ -51,5 +53,25 @@ html[data-theme='dark'] #themeBtn {
 /* User Theme : light */
 html[data-theme='light'] {
     background: #fff;
+    color: #000;
+}
+html[data-theme='light'] .movie-card {
+    border-color: #fff;
+    background: #fff;
+    color: #000;
+    border: 0;
+}
+html[data-theme='light'] hr {
+    opacity: 1;
+}
+html[data-theme='light'] .keyword_anchor {
+    background: #fff;
+    color: #333;
+    border-color: #dadcdf;
+}
+html[data-theme='light'] .keyword_anchor:hover {
+    background: #f2f5f6;
+}
+html[data-theme='light'] #themeBtn {
     color: #000;
 }
