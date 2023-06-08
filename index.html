@@ -1,35 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./static/css/style.css" />
-        <link rel="stylesheet" href="./static/css/dark.css" />
-        <title>이안진의 최고 평점 영화 콜렉션</title>
-    </head>
+  <<<<<<<header HEAD
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <link rel="stylesheet" href="./static/css/dark.css" />
+    <title>최고 평점 영화 콜렉션</title>
+  </head>
 
-    <body>
-        <header>이안진의 최고 평점 영화 콜렉션 👻</header>
-        <button type="button" id="themeBtn">다크모드 <b>OFF</b></button>
+  <body>
+    <header>최고 평점 영화 콜렉션 👻</header>
+    <button type="button" id="themeBtn">다크모드 <b>OFF</b></button>
 
-        <form class="search">
-            <label>영화 검색 : </label>
-            <input type="text" id="searchInput" placeholder="영화 제목을 검색해주세요." value="" />
-            <button type="submit" id="searchButton" onclick="sortMovies(event)">검색👆</button>
-        </form>
+    <form class="search">
+      <label>영화 검색 : </label>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="영화 제목을 검색해주세요."
+        value=""
+      />
+      <button type="submit" id="searchButton" onclick="sortMovies(event)">
+        검색👆
+      </button>
+    </form>
 
-        <div class="recent_data">
-            <strong>최근 검색어</strong>
-            <ul id="recentList" class="recent_list">
-                <li><a href="#">기생충</a><button type="button" class="del_btn" onclick="delRecentData()">삭제</button></li>
-                <li><a href="#">대부</a><button type="button" class="del_btn" onclick="delRecentData()">삭제</button></li>
-            </ul>
-        </div>
-        <hr />
+    <div class="recent_data">
+      <strong>최근 검색어</strong>
+      <ul id="recentList" class="recent_list">
+        <li>
+          <a href="#">기생충</a
+          ><button type="button" class="del_btn" onclick="delRecentData()">
+            삭제
+          </button>
+        </li>
+        <li>
+          <a href="#">대부</a
+          ><button type="button" class="del_btn" onclick="delRecentData()">
+            삭제
+          </button>
+        </li>
+      </ul>
+    </div>
+    <hr />
 
-        <div class="card-list"></div>
-        <script src="./static/js/main.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    </body>
+    <div class="card-list"></div>
+
+    <script src="./static/js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </body>
+  =======
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./static/css/style.css" />
+    <link rel="stylesheet" href="./static/css/dark.css" />
+    <title>이안진의 최고 평점 영화 콜렉션</title>
+  </head>
+
+  <body>
+    <header>이안진의 최고 평점 영화 콜렉션 👻</header>
+    <button type="button" id="themeBtn">다크모드 <b>OFF</b></button>
+
+    <form class="search">
+      <label>영화 검색 : </label>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="영화 제목을 검색해주세요."
+        value=""
+      />
+      <button type="submit" id="searchButton" onclick="sortMovies(event)">
+        검색👆
+      </button>
+    </form>
+
+    <div class="recent_data">
+      <strong>최근 검색어</strong>
+      <ul id="recentList" class="recent_list">
+        <li>
+          <a href="#">기생충</a
+          ><button type="button" class="del_btn" onclick="delRecentData()">
+            삭제
+          </button>
+        </li>
+        <li>
+          <a href="#">대부</a
+          ><button type="button" class="del_btn" onclick="delRecentData()">
+            삭제
+          </button>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <div class="card-list"></div>
+    <script src="./static/js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </body>
+  >>>>>>> ed24d337670d48e08d218085b717980edf4cb2af
 </html>

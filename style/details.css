@@ -1,0 +1,60 @@
+@font-face {
+  font-family: "Dovemayo_wild";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/Dovemayo_wild.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Dovemayo_wild";
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+/* 영화 내용 본문 */
+header {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+/* 로그인 - 작성 */
+main {
+}
+
+#write {
+  display: flex;
+  margin: 30px auto;
+}
+
+#wrapper1 {
+}
+
+#wrapper2 {
+}
+
+#wrapper3 {
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+/* 로그인 - 수정 */
+#update {
+  display: none;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+/* 리스트 */
+#review-container {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+#user-nickname,
+#user-content,
+#user-date {
+  flex: 1;
+}
