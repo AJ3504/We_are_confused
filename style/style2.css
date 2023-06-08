@@ -113,7 +113,7 @@ header > h1 > a {
 
 #submit {
   border: none;
-  background-color: black;
+  background-color: #a72d2d;
   color: white;
   padding: 15px 10px;
   font-size: 15px;
@@ -186,7 +186,7 @@ header > h1 > a {
 }
 .review-edit-btn,
 .review-delete-btn {
-  background-color: black;
+  background-color: rgb(32, 32, 32);
   color: white;
   border: none;
   padding: 5px 10px;
