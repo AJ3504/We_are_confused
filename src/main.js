@@ -89,7 +89,7 @@ function a(item) {
 
   movieCard.className = "movie-card";
   movieCard.target = "movie-card";
-  movieCard.href = `./pages/details.html?id=${id}`; // 상세p
+  movieCard.href = `details.html?id=${id}`; // 상세p
   movieCard.onclick = function () {
     alert(`ID : ${id}`);
   };
