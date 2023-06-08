@@ -59,19 +59,21 @@ function addReview() {
       text: contentText,
       id: movieId,
       date: new Date().toLocaleDateString(),
+      //review_id: Math.random()
     };
 
     // 리뷰를 배열에 추가합니다.
     reviews.push(newReview);
 
     // 리뷰 데이터를 로컬 스토리지에 저장합니다.
-    saveReviews(reviews);
+    saveReviewsNReload(reviews);
   }
 }
 
 // 리뷰 데이터를 로컬 스토리지에 저장하는 함수입니다.
-function saveReviews(reviews) {
+function saveReviewsNReload(reviews) {
   localStorage.setItem(`${paramId}`, JSON.stringify(reviews));
+  window.location.reload();
 }
 
 // window.localStorage.clear();
@@ -116,10 +118,16 @@ function createReviewElement(review) {
   nicknameElement.innerHTML = `<p>${review.nickname}</p>`;
   contentElement.innerHTML = `<p>${review.text}</p>`;
   dateElement.innerHTML = `<span>${review.date}</span>`;
-  editButton.textContent = "수정"; //
+  editButton.textContent = "수정";
+
   // 수정 버튼 클릭 시 수정 모드로 전환
   editButton.addEventListener("click", () => {
-    enableEditMode(review);
+    const 비밀번호 = prompt("입력했던 비밀번호를 재입력해주세요!");
+    if (비밀번호 !== review.password) {
+      alert("비밀번호가 올바르지 않습니다.");
+    } else {
+      enableEditMode(review);
+    }
   });
   deleteButton.textContent = "삭제"; //
   // 삭제 버튼 클릭 시 댓글 삭제
@@ -150,13 +158,7 @@ function enableEditMode(review) {
 
   // 2.저장 버튼 클릭 시 수정 내용 저장 후 화면 업데이트
   saveButton.addEventListener("click", () => {
-    const 비밀번호 = prompt("입력했던 비밀번호를 재입력해주세요!");
-
-    if (비밀번호 !== review.password) {
-      alert("비밀번호가 올바르지 않습니다.");
-    } else {
-      saveEditedReview(review); //⭐️2-1로 가세요
-    }
+    saveEditedReview(review); //⭐️2-1로 가세요
   });
 
   // contentElement.innerHTML = "";
@@ -172,18 +174,19 @@ function saveEditedReview(review) {
       r.id === review.id &&
       r.nickname === review.nickname &&
       r.password === review.password
+    //r.review_id === review.review_id
   );
   //여길 수정했더니.... 되네? 202번째 줄은 안고쳐도 되겠지?
 
   if (index !== -1) {
     reviews[index].text = review.text;
-    saveReviews(reviews); //2-1-2
+    saveReviewsNReload(reviews); //2-1-2
     create(); // 화면 업데이트  //⭐️2-1-3으로 가세요
   }
 }
 
 //(참고) 2-1-2.
-// function saveReviews(reviews) {
+// function saveReviewsNReload(reviews) {
 //   localStorage.setItem(`${paramId}`, JSON.stringify(reviews));
 // }
 
@@ -236,6 +239,7 @@ function deleteReview(review) {
       r.id === review.id &&
       r.nickname === review.nickname &&
       r.password === review.password
+    //r.review_id === review.review_id
   );
 
   if (index1 !== -1) {
@@ -246,15 +250,15 @@ function deleteReview(review) {
       alert("비밀번호가 올바르지 않습니다.");
     } else if (비밀번호 === review.password) {
       reviews.splice(index1, 1);
-      saveReviews(reviews);
+      saveReviewsNReload(reviews);
     }
   }
 }
 
-// 리뷰 데이터 업데이트 및 화면 업데이트 🤔
+// 리뷰 데이터 업데이트 및 화면 업데이트
 function updateReviews() {
   const reviews = getReviews();
-  saveReviews(reviews);
+  saveReviewsNReload(reviews);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
