@@ -137,78 +137,58 @@ function createReviewElement(review) {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 // 댓글 수정 모드로 전환
-// function enableEditMode(review) {
-//   //
-//   const contentElement = userContent.querySelector(".content-item");
-//   const editInput = document.createElement("textarea");
-//   const saveButton = document.createElement("button");
-//   saveButton.textContent = "저장";
-
-//   //비밀번호 입력후, 일치시 입력란 수정 후 로컬스토리지 저장
-//   saveButton.addEventListener("click", () => {
-//     let 비밀번호 = prompt("입력했던 비밀번호를 재입력해주세요!");
-
-//     if (비밀번호 !== review.password) {
-//       alert("비밀번호가 올바르지 않습니다.");
-//     } else if (비밀번호 === review.password) {
-//       editInput.addEventListener("input", () => {
-//         review.text = editInput.value;
-
-//         const reviews = getReviews();
-//         reviews[index].text = review.text;
-
-//         localStorage.setItem(`${paramId}`, JSON.stringify(reviews));
-//       });
-//     }
-//   });
-
-//   //디스플레이
-//   contentElement.innerHTML = "";
-//   contentElement.appendChild(editInput);
-//   contentElement.appendChild(saveButton);
-// }
-
-// 댓글 수정 모드로 전환
 function enableEditMode(review) {
   const contentElement = userContent.querySelector(".content-item");
   const editInput = document.createElement("textarea");
   const saveButton = document.createElement("button");
   saveButton.textContent = "저장";
 
-  // textarea 값 변경 시
+  // 1.textarea의 입력값 변경 evnet 발생 -> review.text를 입력값으로 업데이트
   editInput.addEventListener("input", (event) => {
     review.text = event.target.value;
   });
 
-  // 저장 버튼 클릭 시 수정 내용 저장
+  // 2.저장 버튼 클릭 시 수정 내용 저장 후 화면 업데이트
   saveButton.addEventListener("click", () => {
     const 비밀번호 = prompt("입력했던 비밀번호를 재입력해주세요!");
 
     if (비밀번호 !== review.password) {
       alert("비밀번호가 올바르지 않습니다.");
     } else {
-      saveEditedReview(review);
+      saveEditedReview(review); //⭐️2-1로 가세요
     }
   });
 
-  contentElement.innerHTML = "";
+  // contentElement.innerHTML = "";
   contentElement.appendChild(editInput);
   contentElement.appendChild(saveButton);
 }
 
-// 수정된 댓글 저장
+// ⭐️2-1.저장 버튼 클릭 시 수정 내용 저장 후 화면 업데이트
 function saveEditedReview(review) {
-  const reviews = getReviews();
-  const index = reviews.findIndex((r) => r.id === review.id);
+  const reviews = getReviews(); //2-1-1
+  const index = reviews.findIndex(
+    (r) =>
+      r.id === review.id &&
+      r.nickname === review.nickname &&
+      r.password === review.password
+  );
+  //여길 수정했더니.... 되네? 202번째 줄은 안고쳐도 되겠지?
 
   if (index !== -1) {
     reviews[index].text = review.text;
-    saveReviews(reviews);
-    display(); // 화면 업데이트
+    saveReviews(reviews); //2-1-2
+    create(); // 화면 업데이트  //⭐️2-1-3으로 가세요
   }
 }
 
-function display() {
+//(참고) 2-1-2.
+// function saveReviews(reviews) {
+//   localStorage.setItem(`${paramId}`, JSON.stringify(reviews));
+// }
+
+// ⭐️2-1-3. 로컬스토리지에 저장한 데이터를 화면에 디스플레이
+function create() {
   // 리뷰 데이터를 로컬 스토리지에서 가져옵니다.
   const reviews = getReviews();
 
@@ -217,7 +197,7 @@ function display() {
   userContent.innerHTML = "";
   userDate.innerHTML = "";
 
-  // 가져온 리뷰 데이터를 순회하면서 리뷰 요소를 생성하여 화면에 출력합니다.
+  // 가져온 리뷰 데이터를 순회하면서 리뷰 요소를 생성
   for (const review of reviews) {
     if (review.id === paramId) {
       createReviewElement(review);
@@ -225,23 +205,27 @@ function display() {
   }
 }
 
-// loadReviews 함수 내에서 display를 호출하여 초기 화면에 리뷰를 출력할 수 있습니다.
+// 2-1-3과 이어짐
+// loadReviews 함수 내에서 create()를 호출하여 초기 화면에 리뷰를 출력할 수 있습니다.
 function loadReviews() {
-  // 로컬 스토리지에서 리뷰 데이터를 가져옵니다.
-  const reviews = getReviews();
-
-  // 리뷰 컨테이너를 초기화합니다.
-  userNickname.innerHTML = "";
-  userContent.innerHTML = "";
-  userDate.innerHTML = "";
-
-  // 가져온 리뷰 데이터를 순회하면서 리뷰 요소를 생성하여 화면에 출력합니다.
-  for (const review of reviews) {
-    if (review.id === paramId) {
-      createReviewElement(review);
-    }
-  }
+  create();
 }
+
+//(참고)
+// function loadReviews() {
+//   // 로컬 스토리지에서 리뷰 데이터를 가져옵니다.
+//   const reviews = getReviews();
+
+//   // 리뷰 컨테이너를 초기화합니다.
+//   // reviewContainer.innerHTML = "";
+
+//   // 리뷰 데이터를 순회하면서 리뷰 요소를 생성하여 리뷰 컨테이너에 추가합니다.
+//   for (const review of reviews) {
+//     if (review.id === paramId) {
+//       createReviewElement(review);
+//     }
+//   }
+// }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 // 댓글 삭제
