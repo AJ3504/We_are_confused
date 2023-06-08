@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'Dovemayo_wild';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/Dovemayo_wild.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Dovemayo_wild';
+    /* background-color: black;
+  color: white; */
+}
+
+header {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.search {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.movie-card {
+    width: 450px;
+    height: 1000px;
+    margin-top: 20px;
+    border-style: solid;
+    border-color: white;
+    color: #000;
+    text-decoration: none;
+}
+
+/* 최근 검색어 */
+.recent_data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 14px 0 30px;
+    font-size: 16px;
+}
+.recent_data > strong {
+    font-weight: inherit;
+    /* color: #868d9f; */
+}
+.recent_data > strong::after {
+    content: '▸';
+}
+.recent_list {
+    margin: 0;
+    padding: 0 0 0 6px;
+    color: #fff;
+}
+.recent_list > li {
+    display: inline-block;
+    margin-left: 12px;
+    vertical-align: middle;
+}
+.recent_list .keyword_anchor {
+    background: #fff;
+    color: #333;
+    border: 1px solid #dadcdf;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+.recent_list .del_btn {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    color: #868d9f;
+    transition: color 0.3s ease;
+}
+
+/* 테마 버튼 */
+#themeBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: 0;
+    background: 0;
+    font-size: 18px;
+}

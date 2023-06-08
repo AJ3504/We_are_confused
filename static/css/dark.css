@@ -1,0 +1,77 @@
+/* dark */
+@media (prefers-color-scheme: dark) {
+    html {
+        background: #1e1e20;
+        color: #fff;
+    }
+    .movie-card {
+        background: #272829;
+        color: #fff;
+        border: 0;
+    }
+    hr {
+        opacity: 0.07;
+    }
+    .keyword_anchor {
+        background: #252627;
+        color: #cbcbcb;
+        border-color: #3c3e3e;
+    }
+    .keyword_anchor:hover {
+        background: #3c3f41;
+    }
+    #themeBtn {
+        color: #fff;
+    }
+}
+
+/* User Theme : dark */
+html[data-theme='dark'] {
+    background: #1e1e20;
+    color: #fff;
+}
+html[data-theme='dark'] .movie-card {
+    background: #272829;
+    color: #fff;
+    border: 0;
+}
+html[data-theme='dark'] hr {
+    opacity: 0.07;
+}
+html[data-theme='dark'] .keyword_anchor {
+    background: #252627;
+    color: #cbcbcb;
+    border-color: #3c3e3e;
+}
+html[data-theme='dark'] .keyword_anchor:hover {
+    background: #3c3f41;
+}
+html[data-theme='dark'] #themeBtn {
+    color: #fff;
+}
+
+/* User Theme : light */
+html[data-theme='light'] {
+    background: #fff;
+    color: #000;
+}
+html[data-theme='light'] .movie-card {
+    border-color: #fff;
+    background: #fff;
+    color: #000;
+    border: 0;
+}
+html[data-theme='light'] hr {
+    opacity: 1;
+}
+html[data-theme='light'] .keyword_anchor {
+    background: #fff;
+    color: #333;
+    border-color: #dadcdf;
+}
+html[data-theme='light'] .keyword_anchor:hover {
+    background: #f2f5f6;
+}
+html[data-theme='light'] #themeBtn {
+    color: #000;
+}

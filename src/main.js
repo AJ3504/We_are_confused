@@ -47,6 +47,14 @@ let sortMovies = async (event) => {
   //필터링
   let searchInput = document.querySelector("#searchInput").value;
 
+  if (searchInput.trim() === "") {
+    swal(
+      "검색하려는 영화 제목을 입력하세요",
+      "한 글자부터 입력 가능",
+      "warning"
+    );
+  }
+
   // 최근검색어 앵커 클릭 조건 추가
   let targetKeyword = event ? event.target.dataset.keyword : null;
   if (!targetKeyword) {
@@ -58,6 +66,10 @@ let sortMovies = async (event) => {
   let filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(searchInput.toLowerCase())
   );
+  if (filteredMovies.length === 0) {
+    swal("검색하려는 영화가 없습니다", "", "error");
+    return;
+  }
   console.log(filteredMovies);
 
   let movieCard;
@@ -66,8 +78,6 @@ let sortMovies = async (event) => {
     let cardList = document.querySelector(".card-list");
     cardList.append(movieCard);
   });
-
-  a(filteredMovies);
 };
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -79,7 +89,7 @@ function a(item) {
 
   movieCard.className = "movie-card";
   movieCard.target = "movie-card";
-  movieCard.href = `details.html?id=${id}`; // 상세p
+  movieCard.href = `./pages/details.html?id=${id}`; // 상세p
   movieCard.onclick = function () {
     alert(`ID : ${id}`);
   };
@@ -126,7 +136,6 @@ window.addEventListener("load", function () {
   searchInput.focus();
 });
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 // 최근검색어 - 이지영
 const $recentList = document.querySelector("#recentList");
 let keywordArr = JSON.parse(localStorage.getItem("recentkeyword")) || [];
@@ -208,5 +217,3 @@ const toggleTheme = () => {
 
 $themeBtn.addEventListener("click", toggleTheme);
 initTheme();
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//

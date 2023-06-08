@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style2.css" />
+        <title>이안진의 최고 평점 영화 콜렉션</title>
+    </head>
+
+    <body>
+        <header id="logo">
+            <a href="#">
+            <img src="화면 캡처 2023-06-06 235737.png" id="logoImage"></a></header>
+
+        <!-- <script src="../static/js/main.js"></script> -->
+        <script>
+            // 테스트용
+
+            const urlParams = new URL(location.href).searchParams;
+            const paramId = urlParams.get('id');
+            console.log(paramId);
+
+            const apiKey = '06f2084d7dd2df5627a3e9c9a1ee55a0';
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization:
+                        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzFhOWNiZmI5ZmQyYjM0Zjc5NDJhMDE3ZDQzNzk1NCIsInN1YiI6IjY0NzA4OTQ1MTNhMzIwMDEzMzg2MDdhZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IRZX6ubYrGSryWyuwy-pz7rwGMOmnbvU9PitigtZTcM',
+                },
+            };
+            try {
+            fetch(`https://api.themoviedb.org/3/movie/${paramId}?language=en-US`, options)
+                .then((response) => response.json())
+                .then((data) => {
+
+                // 영화 정보 표시
+                const movieTitle = data.title;
+                const moviePoster = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
+                const movieOverview = data.overview;
+
+                const movieDetailsContainer = document.getElementById('movie-details');
+
+                const containerElement = document.createElement('div');
+                containerElement.classList.add('movieDetail');
+                
+                const posterElement = document.createElement('img');
+                posterElement.src = moviePoster;
+                posterElement.alt = '영화 포스터';
+                movieDetailsContainer.appendChild(posterElement);
+
+                const titleElement = document.createElement('h2');
+                titleElement.textContent = movieTitle;
+                movieDetailsContainer.appendChild(titleElement);
+                
+                const descElement = document.createElement('h3');
+                descElement.textContent = '상세정보';
+                movieDetailsContainer.insertBefore(descElement, containerElement.firstChild);
+
+                const overviewElement = document.createElement('p');
+                overviewElement.textContent = movieOverview;
+                
+                
+
+                containerElement.appendChild(posterElement);
+                containerElement.appendChild(overviewElement);
+                movieDetailsContainer.appendChild(containerElement);
+
+                })
+                .catch((err) => {
+                    console.error(err);
+                    });
+                } catch (error) {
+                console.error(error);
+                }
+
+                // 로고 클릭시 홈화면으로 이동
+                const logoElement = document.querySelector('#logo #logoImage');
+                logoElement.addEventListener('click', () => {
+                window.location.href = 'C:\Users\eunhe\Downloads\We_are_confused-feature-dark-theme\We_are_confused-feature-dark-theme\index.html';
+    });
+        </script>
+        <div id="movie-details">
+        </div>
+        <button type="button" class="reviewButton">이 영화 리뷰 쓰러가기 👈</button>
+    </body>
+</html>
