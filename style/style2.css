@@ -1,107 +1,199 @@
-/* 상세정보 페이지 */
 @font-face {
-    font-family: 'Dovemayo_wild';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/Dovemayo_wild.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Dovemayo_wild";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/Dovemayo_wild.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
-    font-family: 'Dovemayo_wild';
-    /* background-color: black;
-  color: white; */
-}
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* justify-content: center; */
-    height: 100vh;
-    margin: 0;
-}
-.movieDetail {
-    border-style: solid;
-    border-color: #636060b2;
-    border-width: 1px;
-    padding: 20px;
-    max-width: 100%;
-    display: block;
-    font-size: 0;
-    margin: 0 -5px;
-    box-sizing: border-box;
-    overflow-wrap: break-word;
+  font-family: "Dovemayo_wild";
+  font-size: 15px;
 }
 
-.movieDetail img {
-    max-width: 100%;
-    height: auto;
-    margin: 10px auto;
-    display: block;
-    box-sizing: border-box;
+/* 테마 버튼 */
+#themeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: 0;
+  background: 0;
+  font-size: 18px;
 }
 
-p {
-    display: inline-block;
-    width: 50%;
-    max-height: 735px;
-    padding: 0 5px;
-    border-style: solid;
-    border-color: #636060b2;
-    border-width: 1px;
-    font-size: 20px;
-    vertical-align: middle;
-    box-sizing: border-box;
-    overflow: auto;
+/* 여기부터 변경 */
+header > h1 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-family: "Dovemayo_wild";
 }
 
-.reviewButton {
-    margin-top: 10px;
-    font-size: 25px;
-    padding: 5px;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+header > h1 > a {
+  text-decoration: none;
+  color: #000;
+}
+
+#main {
+  width: 1800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 10px;
+}
+#movie-details {
+  width: 60%;
+}
+#movie-review-container {
+  background-color: #696969;
+  border-radius: 3%;
+  width: 30%;
 }
 
 .movieDetail {
-    border-style: solid;
-    border-color: #636060b2;
-    border-width: 1px;
-    padding: 20px;
-    width: 1100px;
-    display: block;
-    font-size: 0;
-    margin: 0 -5px;
-    position: relative;
-}
-.movieDetail img {
-    width: 500px;
-    height: auto;
-    margin-right: 10px;
-    display: inline-block;
-    padding: 0 5px;
-    vertical-align: middle;
-    box-sizing: border-box;
-}
-p {
-    display: inline-block;
-    width: 50%;
-    height: 735px;
-    padding: 0 5px;
-    border-style: solid;
-    border-color: #636060b2;
-    border-width: 1px;
-    font-size: 20px;
-    vertical-align: middle;
-    box-sizing: border-box;
-    overflow: auto;
+  display: flex;
+  flex-direction: row;
 }
 
-.reviewButton {
-    margin-top: 10px;
-    font-size: 25px;
-    padding: 5px;
-    position: absolute;
-    bottom: 50px;
-    right: 300px;
+.moviePosterBox {
+  width: 50%;
+  padding: 2%;
+}
+
+.moviePosterBox > img {
+  width: 100%;
+}
+
+.movieDetailTextBox {
+  width: 50%;
+  padding: 2%;
+  margin: auto 0;
+}
+
+.movieDetailTextBox > h2 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.movieDetailTextBox > p {
+  width: 100%;
+  font-size: 20px;
+  margin-top: 5%;
+  line-height: 1.4;
+}
+
+#movie-review-container {
+  padding: 2%;
+  height: 700px;
+}
+
+#write-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#content {
+  resize: none;
+}
+
+#nickname,
+#content,
+#password {
+  border: none;
+  padding: 15px 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+#submit {
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 15px 10px;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+#review-check-ment {
+  font-size: 15px;
+  margin: 20px 0 10px 0;
+  color: white;
+}
+
+#wrapReviewsBox {
+  padding-top: 10px;
+  padding-right: 15px;
+  height: 350px;
+  overflow-y: scroll;
+}
+
+#wrapReviewsBox::-webkit-scrollbar {
+  width: 10px;
+}
+#wrapReviewsBox::-webkit-scrollbar-thumb {
+  background-color: #2f3542;
+  border-radius: 10px;
+}
+#wrapReviewsBox::-webkit-scrollbar-track {
+  background-color: grey;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+}
+
+.wrapReview {
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.wrapReviewBox1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px 10px 0 0;
+  padding: 10px 10px 2px 10px;
+}
+
+.wrapReviewBox2 {
+  height: 70px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0 0 10px 10px;
+  padding: 5px 10px 10px 10px;
+  overflow-y: scroll;
+}
+
+.wrapReviewBox2::-webkit-scrollbar {
+  width: 1px;
+  display: none;
+}
+
+.nickname-item,
+.date-item,
+.content-item {
+  font-size: 20px;
+}
+
+.wrapReviewBox3 {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 7px;
+}
+.review-edit-btn,
+.review-delete-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  width: 70px;
+  border-radius: 5px;
+}
+
+.review-delete-btn {
+  margin-left: 10px;
 }

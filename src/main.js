@@ -25,7 +25,7 @@ const fetchMovieData = async () => {
 
 let showMovies = async () => {
   let movies = await fetchMovieData();
-
+  console.log(movies);
   let movieCard;
   movies.map((item) => {
     movieCard = a(item);

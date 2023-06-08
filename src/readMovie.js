@@ -22,33 +22,39 @@ try {
       const movieTitle = data.title;
       const moviePoster = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
       const movieOverview = data.overview;
+      const movieVoteAverage = data.vote_average.toFixed(1);
 
       const movieDetailsContainer = document.getElementById("movie-details");
 
       const containerElement = document.createElement("div");
       containerElement.classList.add("movieDetail");
 
+      const posterElementBox = document.createElement("div");
+      posterElementBox.className = "moviePosterBox";
+
       const posterElement = document.createElement("img");
       posterElement.src = moviePoster;
       posterElement.alt = "영화 포스터";
-      movieDetailsContainer.appendChild(posterElement);
+      posterElementBox.appendChild(posterElement);
+
+      const contentsElement = document.createElement("div");
+      contentsElement.className = "movieDetailTextBox";
 
       const titleElement = document.createElement("h2");
       titleElement.textContent = movieTitle;
-      movieDetailsContainer.appendChild(titleElement);
-
-      const descElement = document.createElement("h3");
-      descElement.textContent = "상세정보";
-      movieDetailsContainer.insertBefore(
-        descElement,
-        containerElement.firstChild
-      );
+      contentsElement.appendChild(titleElement);
 
       const overviewElement = document.createElement("p");
       overviewElement.textContent = movieOverview;
+      contentsElement.appendChild(overviewElement);
 
-      containerElement.appendChild(posterElement);
-      containerElement.appendChild(overviewElement);
+      const ratingElement = document.createElement("p");
+      ratingElement.textContent = movieVoteAverage;
+      contentsElement.appendChild(ratingElement);
+
+      containerElement.appendChild(posterElementBox);
+      containerElement.appendChild(contentsElement);
+
       movieDetailsContainer.appendChild(containerElement);
     })
     .catch((err) => {

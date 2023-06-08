@@ -23,11 +23,7 @@
 const nicknameInput = document.getElementById("nickname");
 const passwordInput = document.getElementById("password");
 const contentInput = document.getElementById("content");
-
-const userNickname = document.getElementById("user-nickname");
-const userContent = document.getElementById("user-content");
-const userDate = document.getElementById("user-date");
-
+const reviewContainer = document.getElementById("wrapReviewsBox");
 const submitButton = document.getElementById("submit");
 
 // 전송 버튼에 addReview() 추가
@@ -111,23 +107,34 @@ function loadReviews() {
 
 //i.f
 function createReviewElement(review) {
-  //값 선택
-  const nicknameElement = document.createElement("div");
-  const contentElement = document.createElement("div");
-  const dateElement = document.createElement("div");
+  //요소 생성
+  const wrapReview = document.createElement("div");
+  wrapReview.className = "wrapReview";
+  const wrapReviewBox1 = document.createElement("div");
+  wrapReviewBox1.className = "wrapReviewBox1";
+  const wrapReviewBox2 = document.createElement("div");
+  wrapReviewBox2.className = "wrapReviewBox2";
+  const wrapReviewBox3 = document.createElement("div");
+  wrapReviewBox3.className = "wrapReviewBox3";
+
+  const nicknameElement = document.createElement("span");
+  nicknameElement.className = "nickname-item";
+  const dateElement = document.createElement("span");
+  dateElement.className = "date-item";
+  const contentElement = document.createElement("span");
+  contentElement.className = "content-item";
+
   const editButton = document.createElement("button"); //수정버튼
-  const deleteButton = document.createElement("button"); //삭제버튼
-
-  // 닉네임/내용/날짜 column 생성 위해 class명 추가
-  nicknameElement.classList.add("nickname-item");
-  contentElement.classList.add("content-item");
-  dateElement.classList.add("date-item");
-
-  nicknameElement.innerHTML = `<p>${review.nickname}</p>`;
-  contentElement.innerHTML = `<p>${review.text}</p>`;
-  dateElement.innerHTML = `<span>${review.date}</span>`;
+  editButton.className = "review-edit-btn";
   editButton.textContent = "수정";
-  deleteButton.textContent = "삭제"; //
+
+  const deleteButton = document.createElement("button"); //삭제버튼
+  deleteButton.className = "review-delete-btn";
+  deleteButton.textContent = "삭제";
+
+  nicknameElement.textContent = review.nickname;
+  contentElement.textContent = review.text;
+  dateElement.textContent = review.date;
 
   // 수정 버튼에 enableEditMode() 걸어줌
   editButton.addEventListener("click", () => {
@@ -145,12 +152,15 @@ function createReviewElement(review) {
   });
 
   //화면에 출력
-  contentElement.appendChild(editButton);
-  contentElement.appendChild(deleteButton);
 
-  userNickname.appendChild(nicknameElement);
-  userContent.appendChild(contentElement);
-  userDate.appendChild(dateElement);
+  wrapReviewBox1.appendChild(nicknameElement);
+  wrapReviewBox1.appendChild(dateElement);
+  wrapReviewBox2.appendChild(contentElement);
+  wrapReviewBox3.appendChild(editButton);
+  wrapReviewBox3.appendChild(deleteButton);
+
+  wrapReview.append(wrapReviewBox1, wrapReviewBox2, wrapReviewBox3);
+  reviewContainer.appendChild(wrapReview);
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -199,9 +209,9 @@ function create() {
   const reviews = getReviews();
 
   // 리뷰 컨테이너를 초기화합니다.
-  userNickname.innerHTML = "";
-  userContent.innerHTML = "";
-  userDate.innerHTML = "";
+  // userNickname.innerHTML = "";
+  // userContent.innerHTML = "";
+  // userDate.innerHTML = "";
 
   // 가져온 리뷰 데이터를 순회 -> 화면출력용 요소 생성
   for (const review of reviews) {
