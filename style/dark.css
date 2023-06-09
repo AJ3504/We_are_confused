@@ -4,13 +4,15 @@
         background: #1e1e20;
         color: #fff;
     }
-    .movie-card {
-        background: #272829;
+    header > h1 > a {
         color: #fff;
-        border: 0;
     }
-    hr {
-        opacity: 0.07;
+    #themeBtn {
+        color: #fff;
+    }
+    #searchInput {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
     }
     .keyword_anchor {
         background: #252627;
@@ -20,8 +22,30 @@
     .keyword_anchor:hover {
         background: #3c3f41;
     }
-    #themeBtn {
+    hr {
+        opacity: 0.07;
+    }
+    .movie-card {
+        background: #272829;
         color: #fff;
+        border: 0;
+    }
+    #movie-review-container {
+        background: #353738;
+    }
+    #nickname,
+    #content,
+    #password,
+    .wrapReviewBox1,
+    .wrapReviewBox2 {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
+    }
+    #searchInput::placeholder,
+    #nickname::placeholder,
+    #content::placeholder,
+    #password::placeholder {
+        color: #aeaeae !important;
     }
 }
 
@@ -30,13 +54,15 @@ html[data-theme='dark'] {
     background: #1e1e20;
     color: #fff;
 }
-html[data-theme='dark'] .movie-card {
-    background: #272829;
+html[data-theme='dark'] header > h1 > a {
     color: #fff;
-    border: 0;
 }
-html[data-theme='dark'] hr {
-    opacity: 0.07;
+html[data-theme='dark'] #themeBtn {
+    color: #fff;
+}
+html[data-theme='dark'] #searchInput {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
 }
 html[data-theme='dark'] .keyword_anchor {
     background: #252627;
@@ -46,8 +72,30 @@ html[data-theme='dark'] .keyword_anchor {
 html[data-theme='dark'] .keyword_anchor:hover {
     background: #3c3f41;
 }
-html[data-theme='dark'] #themeBtn {
+html[data-theme='dark'] hr {
+    opacity: 0.07;
+}
+html[data-theme='dark'] .movie-card {
+    background: #272829;
     color: #fff;
+    border: 0;
+}
+html[data-theme='dark'] #movie-review-container {
+    background: #353738;
+}
+html[data-theme='dark'] #nickname,
+html[data-theme='dark'] #content,
+html[data-theme='dark'] #password,
+html[data-theme='dark'] .wrapReviewBox1,
+html[data-theme='dark'] .wrapReviewBox2 {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+html[data-theme='dark'] #searchInput::placeholder,
+html[data-theme='dark'] #nickname::placeholder,
+html[data-theme='dark'] #content::placeholder,
+html[data-theme='dark'] #password::placeholder {
+    color: #aeaeae !important;
 }
 
 /* User Theme : light */
@@ -55,14 +103,15 @@ html[data-theme='light'] {
     background: #fff;
     color: #000;
 }
-html[data-theme='light'] .movie-card {
-    border-color: #fff;
-    background: #fff;
+html[data-theme='light'] header > h1 > a {
     color: #000;
-    border: 0;
 }
-html[data-theme='light'] hr {
-    opacity: 1;
+html[data-theme='light'] #themeBtn {
+    color: #000;
+}
+html[data-theme='light'] #searchInput {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #000;
 }
 html[data-theme='light'] .keyword_anchor {
     background: #fff;
@@ -72,6 +121,29 @@ html[data-theme='light'] .keyword_anchor {
 html[data-theme='light'] .keyword_anchor:hover {
     background: #f2f5f6;
 }
-html[data-theme='light'] #themeBtn {
+html[data-theme='light'] hr {
+    opacity: 1;
+}
+html[data-theme='light'] .movie-card {
+    border-color: #fff;
+    background: #fff;
     color: #000;
+    border: 0;
+}
+html[data-theme='light'] #movie-review-container {
+    background: #696969;
+}
+html[data-theme='light'] #nickname,
+html[data-theme='light'] #content,
+html[data-theme='light'] #password,
+html[data-theme='light'] .wrapReviewBox1,
+html[data-theme='light'] .wrapReviewBox2 {
+    background-color: fff;
+    color: #000;
+}
+html[data-theme='light'] #searchInput::placeholder,
+html[data-theme='light'] #nickname::placeholder,
+html[data-theme='light'] #content::placeholder,
+html[data-theme='light'] #password::placeholder {
+    color: #555 !important;
 }
