@@ -137,14 +137,19 @@ function createReviewElement(review) {
   dateElement.textContent = review.date;
 
   // 수정 버튼에 enableEditMode() 걸어줌
-  editButton.addEventListener("click", () => {
-    const 비밀번호 = prompt("입력했던 비밀번호를 재입력해주세요!");
-    if (비밀번호 !== review.password) {
-      alert("비밀번호가 올바르지 않습니다.");
-    } else {
-      enableEditMode(review); //i.f
-    }
-  });
+  editButton.addEventListener(
+    "click",
+    () => {
+      const 비밀번호 = prompt("비밀번호를 입력해주세요.");
+      if (비밀번호 == review.password) {
+        enableEditMode(review); //i.f
+      } else {
+        alert("비밀번호가 올바르지 않습니다.");
+        window.location.reload();
+      }
+    },
+    { once: true }
+  );
 
   // 삭제 버튼에 deleteReview() 걸어줌
   deleteButton.addEventListener("click", () => {
@@ -166,10 +171,15 @@ function createReviewElement(review) {
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 // 댓글 수정 모드로 전환
 function enableEditMode(review) {
-  //수정 textarea, 수정버튼 생성
-  const contentElement = userContent.querySelector(".content-item");
+  //수정 textarea, 저장버튼 생성
+  const wrapReview = document.getElementsByClassName("wrapReview");
+  const wrapEditContents = document.createElement("div");
+  wrapEditContents.className = "wrap-edit-contents";
   const editInput = document.createElement("textarea");
+  editInput.className = "textarea-editInput";
+  editInput.placeholder = "수정할 내용을 입력해주세요.";
   const saveButton = document.createElement("button");
+  saveButton.className = "save-button";
   saveButton.textContent = "저장";
 
   // 1.textarea의 입력값 변경 evnet 발생 -> review.text를 입력값으로 업데이트
@@ -182,9 +192,13 @@ function enableEditMode(review) {
     saveEditedReview(review); //i.f
   });
 
-  // contentElement.innerHTML = "";
-  contentElement.appendChild(editInput);
-  contentElement.appendChild(saveButton);
+  const reviews = getReviews();
+  const index1 = reviews.findIndex((r) => r.own_id === review.own_id);
+  wrapEditContents.append(editInput, saveButton);
+  wrapReview[index1].append(wrapEditContents);
+
+  // 새로운 수정 input창에 기존 내용 넣어주는 로직
+  editInput.textContent = reviews[index1].text;
 }
 
 //i.f
@@ -234,7 +248,7 @@ function deleteReview(review) {
   const index1 = reviews.findIndex((r) => r.own_id === review.own_id);
 
   if (index1 !== -1) {
-    let 비밀번호 = prompt("입력했던 비밀번호를 재입력해주세요!");
+    let 비밀번호 = prompt("비밀번호를 입력해주세요.");
     // console.log(비밀번호);
 
     if (비밀번호 !== review.password) {
