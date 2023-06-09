@@ -1,52 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style/reset.css" />
-    <link rel="stylesheet" href="./style/dark.css" />
-    <link rel="stylesheet" href="./style/style2.css" />
-    <script src="src/readMovie.js" defer></script>
-    <script src="src/details.js" defer></script>
-    <title>최고 평점 영화 콜렉션</title>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style/reset.css" />
+        <link rel="stylesheet" href="./style/style2.css" />
+        <link rel="stylesheet" href="./style/dark.css" />
+        <script src="src/readMovie.js" defer></script>
+        <script src="src/details.js" defer></script>
+        <script src="src/dark.js" defer></script>
+        <title>최고 평점 영화 콜렉션</title>
+    </head>
 
-  <body>
-    <header>
-      <h1><a href="index.html">최고 평점 영화 콜렉션 👻</a></h1>
-    </header>
-    <button type="button" id="themeBtn">다크모드 <b>OFF</b></button>
+    <body>
+        <header>
+            <h1><a href="index.html">최고 평점 영화 콜렉션 👻</a></h1>
+        </header>
+        <button type="button" id="themeBtn">다크모드 <b>OFF</b></button>
 
-    <main id="main">
-      <div id="movie-details"></div>
-      <!-- 작성 전용 -->
-      <div id="movie-review-container">
-        <div id="write-container">
-          <input
-            type="text"
-            id="nickname"
-            placeholder="닉네임을 입력하세요."
-            autocomplete="off"
-          />
-          <textarea
-            id="content"
-            rows="4"
-            cols="50"
-            placeholder="리뷰를 작성하세요."
-          ></textarea>
-          <input
-            type="password"
-            id="password"
-            placeholder="비밀번호를 입력하세요."
-          />
-          <button id="submit">전송</button>
-        </div>
+        <main id="main">
+            <div id="movie-details"></div>
+            <!-- 작성 전용 -->
+            <div id="movie-review-container">
+                <div id="write-container">
+                    <input type="text" id="nickname" placeholder="닉네임을 입력하세요." autocomplete="off" />
+                    <textarea id="content" rows="4" cols="50" placeholder="리뷰를 작성하세요."></textarea>
+                    <input type="password" id="password" placeholder="비밀번호를 입력하세요." />
+                    <button id="submit">전송</button>
+                </div>
 
-        <!-- 리뷰 로드 -->
-        <div id="review-container">
-          <p id="review-check-ment">작성된 댓글을 확인하세요 :)</p>
-          <!-- <div class="댓글 하나">
+                <!-- 리뷰 로드 -->
+                <div id="review-container">
+                    <p id="review-check-ment">작성된 댓글을 확인하세요 :)</p>
+                    <!-- <div class="댓글 하나">
             <div class="박스1">
               <span>작성자</span> : nicknameElement <span>작성날짜</span> :
               dateElement
@@ -57,9 +44,9 @@
               <button class="edit"></button> : editButton
             </div>
           </div> -->
-          <div id="wrapReviewsBox"></div>
-        </div>
-      </div>
-    </main>
-  </body>
+                    <div id="wrapReviewsBox"></div>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>
